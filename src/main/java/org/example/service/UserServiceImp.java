@@ -19,13 +19,13 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void addUser() {
-        userDao.addUser();
+    public void addUser(User user) {
+        userDao.addUser(user);
     }
 
     @Override
-    public void deleteUser() {
-        userDao.deleteUser();
+    public void deleteUser(User user) {
+        userDao.deleteUser(user);
     }
 
     @Override

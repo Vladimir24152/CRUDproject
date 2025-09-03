@@ -8,9 +8,9 @@ public interface UserService {
 
     void createTableUsers();
 
-    void addUser();
+    void addUser(User user);
 
-    void deleteUser();
+    void deleteUser(User user);
 
     List<User> getAllUsers();
 }
