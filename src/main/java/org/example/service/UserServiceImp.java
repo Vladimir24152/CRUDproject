@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService{
 
-    @Autowired
     private UserDao userDao;
+
+    @Autowired
+    public UserServiceImp(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public void createTableUsers() {
@@ -21,6 +25,11 @@ public class UserServiceImp implements UserService{
     @Override
     public void addUser(User user) {
         userDao.addUser(user);
+    }
+
+    @Override
+    public void updateUser(User oldUser, User newUser) {
+
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+
 public class UserDaoImpl implements UserDao {
 
     @Override
@@ -16,6 +16,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addUser(User user) {
+
+    }
+
+    @Override
+    public void updateUser(User oldUser, User newUser) {
 
     }
 
