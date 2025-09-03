@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #343a40;
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .no-users {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<h1>Пользователи</h1>
+<h2>Всего пользователей: <span th:text="${countOfUsers}">0</span></h2>
+
+<!-- Проверяем наличие users в модели -->
+<div th:if="${users != null and !users.empty}">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.name}">Иван</td>
+            <td th:text="${user.lastName}">Иванов</td>
+            <td th:text="${user.age}">25</td>
+            <td th:text="${user.email}">ivan@mail.ru</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Если users пустой или null -->
+<div th:if="${users == null or users.empty}" class="no-users">
+    <p>Пользователи не найдены</p>
+</div>
+
+<!-- Для отладки - посмотрим что приходит в модель -->
+<div style="display: none;">
+    <p th:text="'Users in model: ' + ${users}"></p>
+    <p th:text="'Count: ' + ${countOfUsers}"></p>
+</div>
+
+</body>
+</html>
