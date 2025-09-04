@@ -43,10 +43,53 @@ public class UserController {
     ) {
         try {
             userService.addUser(new User(name,lastName,age,email));
-            return "redirect:/users"; // Перенаправляем на список пользователей
+            return "redirect:/users";
         } catch (Exception e) {
             model.addAttribute("error", "Ошибка при добавлении пользователя: " + e.getMessage());
             return "add-user";
         }
     }
+
+    @PostMapping("/delete-user")
+    public String deleteUser(@RequestParam Long id) {
+        try {
+            userService.deleteUser(id);
+            return "redirect:/users";
+        } catch (Exception e) {
+            return "redirect:/users?error=delete_failed";
+        }
+    }
+
+    @GetMapping("/edit-user")
+    public String showEditUserForm(@RequestParam Long id, Model model) {
+        try {
+            User user = userService.getUserById(id);
+            model.addAttribute("user", user);
+            return "edit-user";
+        } catch (Exception e) {
+            return "redirect:/users?error=user_not_found";
+        }
+    }
+
+    @PostMapping("/update-user")
+    public String updateUser(
+            @RequestParam Long id,
+            @RequestParam String name,
+            @RequestParam String lastName,
+            @RequestParam Integer age,
+            @RequestParam String email,
+            Model model
+    ) {
+        try {
+            User user = new User(name, lastName, age, email);
+            user.setId(id);
+            userService.updateUser(id,user);
+            return "redirect:/users";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error updating user: " + e.getMessage());
+            model.addAttribute("user", userService.getUserById(id));
+            return "edit-user";
+        }
+    }
 }
+

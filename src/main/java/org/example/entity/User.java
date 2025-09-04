@@ -18,6 +18,14 @@ public class User {
         this.email = email;
     }
 
+    public User(long id, String name, String lastName, int age, String email) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }
@@ -40,6 +48,22 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

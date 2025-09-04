@@ -12,10 +12,10 @@ public class ExUserDaoImp implements UserDao{
 
     private List<User> users = new ArrayList<>(
             Arrays.asList(
-                    new User("name1","lastName1",20,"@mail1"),
-                    new User("name2","lastName2",21,"@mail2"),
-                    new User("name3","lastName3",22,"@mail3"),
-                    new User("name4","lastName4",23,"@mail4")
+                    new User(1L,"name1","lastName1",20,"@mail1"),
+                    new User(2L,"name2","lastName2",21,"@mail2"),
+                    new User(3L,"name3","lastName3",22,"@mail3"),
+                    new User(4L,"name4","lastName4",23,"@mail4")
             )
     );
 
@@ -30,13 +30,28 @@ public class ExUserDaoImp implements UserDao{
     }
 
     @Override
-    public void updateUser(User oldUser, User newUser) {
-
+    public void updateUser(long id, User newUser) {
+        User res = getUserById(id);
+        res.setName(newUser.getName());
+        res.setLastName(newUser.getLastName());
+        res.setAge(newUser.getAge());
+        res.setEmail(newUser.getEmail());
     }
 
     @Override
-    public void deleteUser(User user) {
-        users.remove(user);
+    public void deleteUser(long id) {
+        User res = getUserById(id);
+        users.remove(res);
+    }
+
+    @Override
+    public User getUserById(long id) {
+        for (User user: users){
+            if (user.getId()==id){
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override

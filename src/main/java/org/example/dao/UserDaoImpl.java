@@ -20,13 +20,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User oldUser, User newUser) {
+    public void updateUser(long id, User newUser) {
 
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(long id) {
 
+    }
+
+    @Override
+    public User getUserById(long id) {
+        return null;
     }
 
     @Override
