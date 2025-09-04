@@ -22,7 +22,6 @@ public class User {
     private String email;
 
     public User() {
-
     }
 
     public User(String name, String lastName, Integer age, String email) {
